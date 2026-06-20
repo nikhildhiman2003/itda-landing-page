@@ -18,7 +18,7 @@ const services = [
     description: 'Create and deploy secure virtual machines for government department infrastructure needs.',
     tag: 'STATE DATA CENTER',
     icon: Server,
-    bgClass: 'bg-[#edf5eb] text-slate-950 border-emerald-100/50', // Light green tint
+    bgClass: 'bg-[#edf5eb] text-slate-950 border-emerald-100/50', 
     tagColor: 'text-emerald-800',
   },
   {
@@ -26,7 +26,7 @@ const services = [
     description: 'Manage and monitor existing government network connectivity infrastructure services.',
     tag: 'SWAN',
     icon: Wifi,
-    bgClass: 'bg-[#e9f3f1] text-slate-950 border-teal-100/50', // Light teal tint
+    bgClass: 'bg-[#e9f3f1] text-slate-950 border-teal-100/50', 
     tagColor: 'text-teal-800',
   },
   {
@@ -34,7 +34,7 @@ const services = [
     description: 'Access startup infrastructure support, facilitation, mentorship, and innovation ecosystem services.',
     tag: 'STARTUP CELL',
     icon: Rocket,
-    bgClass: 'bg-[#e3f2f7] text-slate-950 border-sky-100/50', // Light sky blue tint
+    bgClass: 'bg-[#e3f2f7] text-slate-950 border-sky-100/50', 
     tagColor: 'text-sky-800',
   },
   {
@@ -42,7 +42,7 @@ const services = [
     description: 'Reserve ITDA conference halls and meeting facilities for official departmental activities.',
     tag: 'ADMINISTRATION',
     icon: Calendar,
-    bgClass: 'bg-[#ebf0f5] text-slate-950 border-slate-200/60', // Light grayish blue tint
+    bgClass: 'bg-[#ebf0f5] text-slate-950 border-slate-200/60', 
     tagColor: 'text-slate-600',
   },
   {
@@ -50,7 +50,7 @@ const services = [
     description: 'Request official government email accounts and secure departmental communication access.',
     tag: 'ADMINISTRATION',
     icon: Mail,
-    bgClass: 'bg-[#def3fa] text-slate-950 border-cyan-100/50', // Slightly deeper blue tint
+    bgClass: 'bg-[#def3fa] text-slate-950 border-cyan-100/50', 
     tagColor: 'text-cyan-800',
   },
   {
@@ -58,7 +58,7 @@ const services = [
     description: 'Submit and resolve IT infrastructure and service-related grievances efficiently.',
     tag: 'SWAN',
     icon: FileText,
-    bgClass: 'bg-[#fbf0e6] text-slate-950 border-orange-100/50', // Light orange/peach tint
+    bgClass: 'bg-[#fbf0e6] text-slate-950 border-orange-100/50',
     tagColor: 'text-orange-800',
   },
 ]
@@ -127,7 +127,6 @@ export default function FeaturedServices() {
             )
           })}
         </div>
-
       </div>
     </section>
   )

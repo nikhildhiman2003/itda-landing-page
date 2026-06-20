@@ -63,7 +63,6 @@ export default function AboutAndProcess() {
               deliver citizen-centric services through a reliable, statewide digital backbone.
             </p>
 
-            {/* Checkmark Bullets */}
             <div className="mt-8 space-y-4">
               {bulletPoints.map((text, idx) => (
                 <div key={idx} className="flex items-start gap-3">
