@@ -58,21 +58,7 @@ export default function Navbar() {
             className="p-1 text-slate-700 hover:text-slate-900 transition-colors"
             title="Accessibility Options"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className="w-5 h-5"
-            >
-              <circle cx="12" cy="4" r="1" />
-              <path d="m18 19 1-7-6 1" />
-              <path d="m5 8 3-1 5.5 2-3.5 4.5 2.5 4.5" />
-              <path d="M10 19v-3.5" />
-            </svg>
+            <img src = "/assets/wheelchair.png" alt = "wheelchair"  className="w-4 h-4"></img>
           </button>
         </div>
       </div>
@@ -83,24 +69,24 @@ export default function Navbar() {
           <Image 
             src="/assets/uttrakhand-logo.webp" 
             alt="Government of Uttarakhand" 
-            width={48} 
-            height={48} 
+            width={50} 
+            height={50} 
             className="object-contain"
             priority
           />
           <Image 
             src="/assets/itda-logo.png" 
             alt="ITDA Logo" 
-            width={44} 
-            height={44} 
+            width={55} 
+            height={55} 
             className="object-contain"
             priority
           />
-          <div className="flex flex-col ml-1">
-            <h1 className="font-extrabold text-5xl md:text-2xl text-slate-900 tracking-tight leading-none">
+          <div className="flex flex-col ml-1 ">
+            <h1 className="font-bold text-3xl md:text-2xl text-slate-900 tracking-tight leading-none">
               ITDA Service Portal
             </h1>
-            <p className="font-semibold text-slate-600 mt-1.5 tracking-wide">
+            <p className="font-semibold text-slate-600 mt-1.0 tracking-wide">
               Govt. Of Uttarakhand
             </p>
           </div>
@@ -124,7 +110,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <button className="flex items-center gap-2 font-bold text-slate-900 hover:text-blue-600 text-[15px] group transition-colors focus:outline-none">
             Login 
-            <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
