@@ -23,10 +23,10 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Button className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 h-auto rounded-xl gap-2 shadow-sm text-sm">
+            <Button className="text-black px-6 py-3 h-auto rounded-xl gap-2 shadow-sm text-sm">
               Explore Services <ArrowRight className="w-4 h-4" />
             </Button>
-            <Button className="border-slate-200 hover:bg-slate-50 font-bold px-6 py-3 h-auto rounded-xl gap-2 text-sm text-slate-800">
+            <Button className="px-6 py-6 h-auto border-2 rounded-2xl gap-2 text-sm text-slate-800">
               Department Registration <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
