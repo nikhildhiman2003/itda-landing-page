@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import { 
   Database, 
   Network, 
@@ -9,7 +8,7 @@ import {
   Briefcase 
 } from 'lucide-react'
 
-const departments = [
+const SERVICE_CARDS_DATA = [
   {
     title: 'State Data Centre (SDC)',
     description: 'Provides secure hosting, storage, and reliable server infrastructure for applications.',
@@ -40,15 +39,6 @@ const departments = [
   },
 ]
 
-const partnerLogos = [
-  { src: '/assets/india-code.png', alt: 'India Code' },
-  { src: '/assets/digilocker.png', alt: 'DigiLocker' },
-  { src: '/assets/make-in-india.png', alt: 'Make In India' },
-  { src: '/assets/skill-india.png', alt: 'Skill India' },
-  { src: '/assets/mygov.png', alt: 'MyGov' },
-  { src: '/assets/etaal.png', alt: 'eTaal' },
-]
-
 export default function DepartmentServices() {
   return (
     <section className="w-full bg-white py-16 font-sans select-none overflow-hidden">
@@ -63,7 +53,7 @@ export default function DepartmentServices() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {departments.map((dept, idx) => {
+          {SERVICE_CARDS_DATA.map((dept, idx) => {
             const IconComponent = dept.icon
             return (
               <div 
@@ -91,27 +81,6 @@ export default function DepartmentServices() {
             )
           })}
         </div>
-        <div className="w-full border-t border-slate-100 pt-12">
-          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-8 md:gap-10">
-            {partnerLogos.map((logo, index) => (
-              <div 
-                key={index} 
-                className="bg-[#f8fafc] border border-slate-100 rounded-xl px-6 py-4 flex items-center justify-center w-[160px] h-[75px] shadow-2xs hover:shadow-xs transition-shadow duration-200"
-              >
-                <div className="w-full h-full relative">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    fill
-                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                    sizes="160px"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
     </section>
   )
