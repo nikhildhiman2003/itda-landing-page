@@ -17,7 +17,7 @@ const bulletPoints = [
   'Compliance with national e-governance standards'
 ]
 
-const steps = [
+const PROCESS_STEPS = [
   {
     number: '1',
     title: 'Select Service',
@@ -92,7 +92,7 @@ export default function AboutAndProcess() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pt-4">
-          {steps.map((step, idx) => {
+          {PROCESS_STEPS.map((step, idx) => {
             const IconComponent = step.icon
             return (
               <div key={idx} className="flex flex-col items-start text-left group">
