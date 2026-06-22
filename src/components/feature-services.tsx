@@ -12,7 +12,7 @@ import {
   ExternalLink 
 } from 'lucide-react'
 
-const services = [
+const SERVICES = [
   {
     title: 'New VM',
     description: 'Create and deploy secure virtual machines for government department infrastructure needs.',
@@ -90,7 +90,7 @@ export default function FeaturedServices() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => {
+          {SERVICES.map((service, index) => {
             const IconComponent = service.icon
             return (
               <div 
