@@ -1,118 +1,218 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 
 export default function Navbar() {
   const [isHindi, setIsHindi] = useState(false)
+  const [fontSize, setFontSize] = useState<'small' | 'normal' | 'large'>('normal')
+
+  useEffect(() => {
+    const root = document.documentElement
+
+    if (fontSize === 'small') {
+      root.style.fontSize = '14px'
+    } else if (fontSize === 'large') {
+      root.style.fontSize = '18px'
+    } else {
+      root.style.fontSize = '16px'
+    }
+  }, [fontSize])
+
+  const handleSkipToMain = (e: React.MouseEvent) => {
+    e.preventDefault()
+
+    const mainSection = document.getElementById('main-content')
+
+    if (mainSection) {
+      mainSection.focus()
+      mainSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
-    <header className="w-full bg-white border-b border-slate-200 select-none font-sans">
-      
-      <div className="bg-slate-50 border-b border-slate-200 px-20 py-2 flex justify-between items-center text-slate-700 text-sm font-medium">
-        
-        <div>
-          <Link 
-            href="#main-content" 
-            className="hover:text-blue-600 transition-colors focus:outline-2 focus:outline-blue-500 text-[13px]"
-          >
-            Skip to main content
-          </Link>
-        </div>
-        
-        <div className="flex items-center gap-6">
-          
-          <div className="flex items-center gap-2">
-            <span className={`text-[13px] ${!isHindi ? 'text-slate-900 font-bold' : 'text-slate-500'}`}>English</span>
-            
-            <button 
-              onClick={() => setIsHindi(!isHindi)}
-              className="w-9 h-5 bg-slate-200 rounded-full relative p-0.5 transition-colors duration-200 focus:outline-none"
-              aria-label="Toggle Language"
+    <header className="w-full bg-[#F8F9FA] border-b border-slate-200 ">
+      <div className="border-b border-slate-200 bg-[#F8F9FA]">
+        <div className="max-w-[1440px] mx-auto px-8 h-11 flex items-center justify-between">
+          <div className="flex items-center">
+            <a
+              href="#main-content"
+              onClick={handleSkipToMain}
+              className="px-4 text-[14px] text-slate-700 hover:text-slate-900 transition-colors"
             >
-              <div className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-200 ${isHindi ? 'translate-x-4' : 'translate-x-0'}`} />
-            </button>
-            
-            <span className={`text-[13px] ${isHindi ? 'text-slate-900 font-bold' : 'text-slate-500'}`}>हिन्दी</span>
+              Skip to main content
+            </a>
+
+            <div className="h-11 w-px bg-slate-200" />
+
+            <Link
+              href="/sitemap"
+              className="px-4 text-[14px] text-black hover:text-slate-900 transition-colors"
+            >
+              Sitemap
+            </Link>
           </div>
 
-          <div className="h-4 w-[1px] bg-slate-300" />
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span
+                className={`text-[14px] ${
+                  !isHindi
+                    ? 'text-black font-medium'
+                    : 'text-black'
+                }`}
+              >
+                English
+              </span>
 
-          <div className="flex items-center gap-1.5">
-            <button className="px-2 py-0.5 border border-slate-300 bg-white rounded text-xs font-semibold shadow-xs hover:bg-slate-100 transition-colors active:scale-95">
-              A-
-            </button>
-            <button className="px-2 py-0.5 border border-slate-300 bg-white rounded text-xs font-semibold shadow-xs hover:bg-slate-100 transition-colors active:scale-95">
-              A
-            </button>
-            <button className="px-2 py-0.5 border border-slate-300 bg-white rounded text-xs font-semibold shadow-xs hover:bg-slate-100 transition-colors active:scale-95">
-              A+
+              <button
+                onClick={() => setIsHindi(!isHindi)}
+                className="relative w-10 h-5 rounded-full bg-[#43544A] p-[2px] transition-all"
+                aria-label="Toggle Language"
+              >
+                <div
+                  className={`h-4 w-4 rounded-full bg-white transition-transform duration-200 ${
+                    isHindi ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+
+              <span
+                className={`text-[14px] ${
+                  isHindi
+                    ? 'text-black font-medium'
+                    : 'text-black'
+                }`}
+              >
+                हिन्दी
+              </span>
+            </div>
+
+            <div className="h-5 w-px bg-slate-300" />
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setFontSize('large')}
+                className={`w-8 h-8 rounded border text-[14px] font-medium transition-all ${
+                  fontSize === 'large'
+                    ? 'bg-[#43544A] text-white border-[#43544A]'
+                    : 'bg-white border-slate-300 text-slate-700'
+                }`}
+              >
+                A+
+              </button>
+
+              <button
+                onClick={() => setFontSize('normal')}
+                className={`w-8 h-8 rounded border text-[14px] font-medium transition-all ${
+                  fontSize === 'normal'
+                    ? 'bg-[#43544A] text-white border-[#43544A]'
+                    : 'bg-white border-slate-300 text-slate-700'
+                }`}
+              >
+                A=
+              </button>
+
+              <button
+                onClick={() => setFontSize('small')}
+                className={`w-8 h-8 rounded border text-[14px] font-medium transition-all ${
+                  fontSize === 'small'
+                    ? 'bg-[#43544A] text-white border-[#43544A]'
+                    : 'bg-white border-slate-300 text-slate-700'
+                }`}
+              >
+                A-
+              </button>
+            </div>
+
+            <div className="h-5 w-px bg-slate-300" />
+
+            <button
+              title="Accessibility Options"
+              className="flex items-center justify-center w-8 h-8"
+            >
+              <img
+                src="/assets/wheelchair.png"
+                alt="Accessibility"
+                className="w-5 h-5 object-contain"
+              />
             </button>
           </div>
-
-          <div className="h-4 w-[1px] bg-slate-300" />
-
-          <button 
-            className="p-1 text-slate-700 hover:text-slate-900 transition-colors"
-            title="Accessibility Options"
-          >
-            <img src = "/assets/wheelchair.png" alt = "wheelchair"  className="w-4 h-4"></img>
-          </button>
         </div>
       </div>
-      
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
-        <div className="flex items-center gap-3">
-          <Image 
-            src="/assets/uttrakhand-logo.webp" 
-            alt="Government of Uttarakhand" 
-            width={50} 
-            height={50} 
-            className="object-contain"
+
+      <div className="max-w-[1440px] mx-auto px-8 h-[104px] flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Image
+            src="/assets/uttrakhand-logo.webp"
+            alt="Government of Uttarakhand"
+            width={52}
+            height={52}
             priority
           />
-          <Image 
-            src="/assets/itda-logo.png" 
-            alt="ITDA Logo" 
-            width={55} 
-            height={55} 
-            className="object-contain"
+
+          <Image
+            src="/assets/itda-logo.png"
+            alt="ITDA Logo"
+            width={52}
+            height={52}
             priority
           />
-          <div className="flex flex-col ml-1 ">
-            <h1 className="font-bold text-3xl md:text-2xl text-slate-900 tracking-tight leading-none">
-              ITDA Service Portal
+
+          <div>
+            <h1 className="text-[24px] font-bold text-black leading-none">
+              {isHindi ? 'ITDA सेवा पोर्टल' : 'ITDA Service Portal'}
             </h1>
-            <p className="font-semibold text-slate-600 mt-1.0 tracking-wide">
-              Govt. Of Uttarakhand
+
+            <p className="mt-2 text-[14px] text-black">
+              {isHindi ? 'उत्तराखंड सरकार' : 'Govt. of Uttarakhand'}
             </p>
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-10 font-bold text-[15px] text-slate-800">
-          <Link href="/" className="text-slate-900 hover:text-blue-600 transition-colors">
-            Home
+        <nav className="hidden lg:flex items-center gap-16">
+          <Link
+            href="/"
+            className="relative text-[15px] font-medium text-black pb-2"
+          >
+            {isHindi ? 'होम' : 'Home'}
+
+            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black" />
           </Link>
-          <Link href="/services" className="hover:text-blue-600 transition-colors">
-            Services
+
+          <Link
+            href="/services"
+            className="text-[15px] font-medium text-black transition-colors"
+          >
+            {isHindi ? 'सेवाएं' : 'Services'}
           </Link>
-          <Link href="/whos-who" className="hover:text-blue-600 transition-colors">
-            Who's Who
+
+          <Link
+            href="/whos-who"
+            className="text-[15px] font-medium text-black transition-colors"
+          >
+            {isHindi ? 'कौन कौन है' : "Who's Who"}
           </Link>
-          <Link href="/career" className="hover:text-blue-600 transition-colors">
-            Career
+
+          <Link
+            href="/career"
+            className="text-[15px] font-medium text-black transition-colors"
+          >
+            {isHindi ? 'करियर' : 'Career'}
           </Link>
         </nav>
+        <button
+          className="flex items-center justify-center gap-3 h-[50px] -8 rounded-full px-5 bg-[#1E14C8] hover:bg-[#170fa5] text-white font-semibold text-[16px] transition-all group">
 
-        <div className="flex items-center">
-          <button className="flex items-center gap-2 font-bold text-slate-900 hover:text-blue-600 text-[15px] group transition-colors focus:outline-none">
-            Login 
-          <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
+          {isHindi ? 'लॉगिन' : 'Login'}
+
+          <ArrowRight
+            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            strokeWidth={2.5}
+          />
+        </button>
       </div>
     </header>
   )
