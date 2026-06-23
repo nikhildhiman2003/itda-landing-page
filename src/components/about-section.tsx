@@ -47,7 +47,7 @@ const PROCESS_STEPS = [
 export default function AboutAndProcess() {
   return (
     <section className="w-full bg-white py-16 md:py-24 font-sans select-none border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+      <div className="max-w-[1430px] mx-auto px-6 md:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-24">
 
