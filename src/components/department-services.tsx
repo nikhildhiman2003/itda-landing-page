@@ -52,7 +52,7 @@ export default function DepartmentServices() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 ">
           {SERVICE_CARDS_DATA.map((dept, idx) => {
             const IconComponent = dept.icon
             return (
@@ -60,7 +60,7 @@ export default function DepartmentServices() {
                 key={idx}
                 className={`${dept.bgClass} rounded-2xl p-7 min-h-[230px] flex flex-col justify-between shadow-xs relative group transition-transform duration-300 hover:-translate-y-1`}
               >
-                <div className="flex items-start justify-between w-full">
+                <div className="flex items-start justify-between w-full ">
                   <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-xs flex items-center justify-center">
                     <IconComponent className="w-6 h-6 text-black" strokeWidth={2} />
                   </div>
