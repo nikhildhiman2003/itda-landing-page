@@ -65,7 +65,7 @@ const SERVICES = [
 
 export default function FeaturedServices() {
   return (
-    <section className="relative w-full bg-white overflow-hidden py-10 md:py-16 px-6 md:px-12 lg:px-16">
+   <section className="relative w-full bg-white overflow-hidden pt-0 pb-2 md:pb-16 px-6 md:px-12 lg:px-16">
       <div className="max-w-[1370px] mx-auto">
         
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
