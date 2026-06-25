@@ -1,5 +1,6 @@
 import React from 'react'
 import './global.css' 
+import '@/i18n'
 import Navbar from './../../components/navbar'
 import Footer from './../../components/footer'
 
