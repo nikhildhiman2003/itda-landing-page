@@ -4,11 +4,14 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Menu, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import i18n from '@/i18n'
 
 export default function Navbar() {
-  const [isHindi, setIsHindi] = useState(false)
+  const { t } = useTranslation() 
   const [fontSize, setFontSize] = useState<'small' | 'normal' | 'large'>('normal')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const isHindi = i18n.language === 'hi'
 
   useEffect(() => {
     const root = document.documentElement
@@ -24,17 +27,19 @@ export default function Navbar() {
 
   const handleSkipToMain = (e: React.MouseEvent) => {
     e.preventDefault()
-
     const mainSection = document.getElementById('main-content')
-
     if (mainSection) {
       mainSection.focus()
       mainSection.scrollIntoView({ behavior: 'smooth' })
     }
   }
+  const handleLanguageToggle = () => {
+    const nextLang = isHindi ? 'en' : 'hi'
+    i18n.changeLanguage(nextLang)
+  }
 
   return (
-<>
+    <>
       <header className="w-full fixed top-0 left-0 z-50 bg-[#F8F9FA] border-b border-slate-200">
         <div className="hidden md:block border-b border-slate-200 bg-[#F8F9FA]">
           <div className="max-w-[1440px] mx-auto px-8 h-11 flex items-center justify-between">
@@ -59,16 +64,12 @@ export default function Navbar() {
 
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <span
-                  className={`text-[14px] ${
-                    !isHindi ? 'text-black font-medium' : 'text-black'
-                  }`}
-                >
+                <span className={`text-[14px] ${!isHindi ? 'text-black font-bold' : 'text-slate-500'}`}>
                   English
                 </span>
 
                 <button
-                  onClick={() => setIsHindi(!isHindi)}
+                  onClick={handleLanguageToggle} 
                   className="relative w-10 h-5 rounded-full bg-[#43544A] p-[2px] transition-all"
                   aria-label="Toggle Language"
                 >
@@ -79,17 +80,12 @@ export default function Navbar() {
                   />
                 </button>
 
-                <span
-                  className={`text-[14px] ${
-                    isHindi ? 'text-black font-medium' : 'text-black'
-                  }`}
-                >
+                <span className={`text-[14px] ${isHindi ? 'text-black font-bold' : 'text-slate-500'}`}>
                   हिन्दी
                 </span>
               </div>
 
               <div className="h-5 w-px bg-slate-300" />
-
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setFontSize('large')}
@@ -127,15 +123,8 @@ export default function Navbar() {
 
               <div className="h-5 w-px bg-slate-300" />
 
-              <button
-                title="Accessibility Options"
-                className="flex items-center justify-center w-8 h-8"
-              >
-                <img
-                  src="/assets/wheelchair.png"
-                  alt="Accessibility"
-                  className="w-5 h-5 object-contain"
-                />
+              <button title="Accessibility Options" className="flex items-center justify-center w-8 h-8">
+                <img src="/assets/wheelchair.png" alt="Accessibility" className="w-5 h-5 object-contain" />
               </button>
             </div>
           </div>
@@ -165,7 +154,6 @@ export default function Navbar() {
               <h1 className="text-[18px] sm:text-[24px] font-bold text-black leading-none">
                 {isHindi ? 'ITDA सेवा पोर्टल' : 'ITDA Service Portal'}
               </h1>
-
               <p className="mt-1 sm:mt-2 text-[12px] sm:text-[14px] text-black">
                 {isHindi ? 'उत्तराखंड सरकार' : 'Govt. of Uttarakhand'}
               </p>
@@ -173,45 +161,28 @@ export default function Navbar() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-16">
-            <Link
-              href="/"
-              className="relative text-[15px] font-medium text-black pb-2"
-            >
-              {isHindi ? 'होम' : 'Home'}
-
+            <Link href="/" className="relative text-[15px] font-bold text-black pb-2">
+              {t('navbar.home')}
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black" />
             </Link>
 
-            <Link
-              href="/services"
-              className="text-[15px] font-medium text-black transition-colors"
-            >
-              {isHindi ? 'सेवाएं' : 'Services'}
+            <Link href="/services" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
+              {t('navbar.services')}
             </Link>
 
-            <Link
-              href="/whos-who"
-              className="text-[15px] font-medium text-black transition-colors"
-            >
-              {isHindi ? 'कौन कौन है' : "Who's Who"}
+            <Link href="/whos-who" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
+              {t('navbar.whosWho')}
             </Link>
 
-            <Link
-              href="/career"
-              className="text-[15px] font-medium text-black transition-colors"
-            >
-              {isHindi ? 'करियर' : 'Career'}
+            <Link href="/career" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
+              {t('navbar.career')}
             </Link>
           </nav>
 
           <div className="flex items-center gap-4">
-            <button
-              className="hidden sm:flex items-center justify-center gap-3 h-[50px] rounded-full px-5 bg-[#1E14C8] hover:bg-[#170fa5] text-white font-semibold text-[16px] transition-all group">
-              {isHindi ? 'लॉगिन' : 'Login'}
-              <ArrowRight
-                className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                strokeWidth={2.5}
-              />
+            <button className="hidden sm:flex items-center justify-center gap-3 h-[50px] rounded-full px-5 bg-[#1E14C8] hover:bg-[#170fa5] text-white font-semibold text-[16px] transition-all group">
+              {t('navbar.login')}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
             </button>
 
             <button
@@ -228,28 +199,27 @@ export default function Navbar() {
           <div className="lg:hidden w-full bg-[#F8F9FA] border-t border-slate-200 px-8 py-4 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
             <nav className="flex flex-col gap-4 font-medium text-[15px] text-black">
               <Link href="/" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {isHindi ? 'होम' : 'Home'}
+                {t('navbar.home')}
               </Link>
               <Link href="/services" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {isHindi ? 'सेवाएं' : 'Services'}
+                {t('navbar.services')}
               </Link>
               <Link href="/whos-who" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {isHindi ? 'कौन कौन है' : "Who's Who"}
+                {t('navbar.whosWho')}
               </Link>
               <Link href="/career" onClick={() => setIsMenuOpen(false)} className="pb-1">
-                {isHindi ? 'करियर' : 'Career'}
+                {t('navbar.career')}
               </Link>
             </nav>
             <div className="pt-2 sm:hidden">
               <button className="flex items-center justify-center gap-3 h-[46px] w-full rounded-full bg-[#1E14C8] text-white font-semibold text-[15px]">
-                {isHindi ? 'लॉगिन' : 'Login'}
+                {t('navbar.login')}
                 <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
               </button>
             </div>
           </div>
         )}
       </header>
-
       <div className="h-[104px] md:h-[148px]" />
     </>
   )
