@@ -1,9 +1,9 @@
 import { GlobalConfig } from 'payload'
 import { METADATA_FIELD } from './../utils'
 export const Services: GlobalConfig = {
-  slug: 'services',
+  slug: 'main-services',
   admin: {
-    description: 'Manage Main Services Categories Grid Portal Settings',
+    description: 'Services',
   },
   access: {
     read: () => true,
