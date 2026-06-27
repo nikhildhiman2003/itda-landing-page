@@ -4,7 +4,7 @@ import { METADATA_FIELD } from '../utils'
 export const Aadhar: GlobalConfig = {
   slug: 'aadhar',
   admin: {
-    description: 'Manage Aadhar Services Info Portal Settings',
+    description: 'Aadhar',
   },
   access: {
     read: () => true, 
