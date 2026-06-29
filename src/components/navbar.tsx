@@ -132,6 +132,7 @@ export default function Navbar() {
 
         <div className="max-w-[1440px] mx-auto px-8 h-[104px] flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <Link href="/">
             <Image
               src="/assets/uttrakhand-logo.webp"
               alt="Government of Uttarakhand"
@@ -140,7 +141,8 @@ export default function Navbar() {
               className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain"
               priority
             />
-
+            </Link>
+            <Link href="/">
             <Image
               src="/assets/itda-logo.png"
               alt="ITDA Logo"
@@ -149,6 +151,7 @@ export default function Navbar() {
               className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain"
               priority
             />
+            </Link>
 
             <div>
               <h1 className="text-[18px] sm:text-[24px] font-bold text-black leading-none">
