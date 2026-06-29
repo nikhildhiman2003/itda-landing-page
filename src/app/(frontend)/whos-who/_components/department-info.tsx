@@ -16,7 +16,7 @@ export default function DepartmentRenderer({ departments }: DashboardProps) {
 
   return (
     <div className="w-full flex flex-col items-center gap-12">
-     <div className="flex flex-wrap items-center justify-center p-1.5 bg-[#F8FAFC] border border-slate-200/60 rounded-full gap-1">
+     <div className="flex flex-wrap items-center justify-center p-1.5 bg-[#F9EAFF] border border-slate-200/60 rounded-full gap-1 ">
         {departments.map((dept) => {
           const isActive = dept.id === activeTabId
           return (
@@ -29,13 +29,15 @@ export default function DepartmentRenderer({ departments }: DashboardProps) {
                   : 'text-slate-600 hover:text-black hover:bg-slate-200/50'
               }`}
             >
-              {dept.wingName}
+              {typeof dept.wingName === 'object' && dept.wingName !== null 
+              ? (dept.wingName as any).en || (dept.wingName as any).hi || ''
+              : dept.wingName}
             </button>
           )
         })}
       </div>
 
-      <div className="w-full mt-4">
+      <div className="w-full">
         {activeDepartment ? (
           <MemberRender department={activeDepartment} />
         ) : (
