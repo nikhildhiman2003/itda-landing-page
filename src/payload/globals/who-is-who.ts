@@ -52,12 +52,6 @@ export const WhoIsWho: GlobalConfig = {
               required: true,
             },
             {
-              type: 'text',
-              name: 'phone',
-              label: 'Official Contact / Intercom Phone',
-              required: true,
-            },
-            {
               type: 'upload',
               name: 'image',
               label: 'Official Profile Photo',

@@ -554,7 +554,6 @@ export interface WhosWho {
        */
       designationKey: string;
       email: string;
-      phone: string;
       image?: (string | null) | Media;
       id?: string | null;
     }[];
@@ -1270,7 +1269,6 @@ export interface WhosWhoSelect<T extends boolean = true> {
               name?: T;
               designationKey?: T;
               email?: T;
-              phone?: T;
               image?: T;
               id?: T;
             };
