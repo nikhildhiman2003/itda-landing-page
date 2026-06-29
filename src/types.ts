@@ -534,7 +534,7 @@ export interface GoverningBody {
   createdAt?: string | null;
 }
 /**
- * whos-who
+ * whos-who configuration layout panel
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "whos-who".
@@ -547,16 +547,25 @@ export interface WhosWho {
   };
   departments: {
     wingName: string;
-    officials: {
-      name: string;
-      /**
-       * i18n hook text trigger key (e.g., director, jointDirector)
-       */
-      designationKey: string;
-      email: string;
-      image?: (string | null) | Media;
-      id?: string | null;
-    }[];
+    memberInformationStructure: 'directMembers' | 'memberTable';
+    memberTableInformation?:
+      | {
+          name: string;
+          designation: string;
+          department: string;
+          email: string;
+          id?: string | null;
+        }[]
+      | null;
+    memberInformation?:
+      | {
+          image: string | Media;
+          name: string;
+          designation: string;
+          email: string;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
   updatedAt?: string | null;
@@ -1263,13 +1272,23 @@ export interface WhosWhoSelect<T extends boolean = true> {
     | T
     | {
         wingName?: T;
-        officials?:
+        memberInformationStructure?: T;
+        memberTableInformation?:
           | T
           | {
               name?: T;
-              designationKey?: T;
+              designation?: T;
+              department?: T;
               email?: T;
+              id?: T;
+            };
+        memberInformation?:
+          | T
+          | {
               image?: T;
+              name?: T;
+              designation?: T;
+              email?: T;
               id?: T;
             };
         id?: T;
