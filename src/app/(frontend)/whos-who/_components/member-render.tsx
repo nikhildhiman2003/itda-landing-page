@@ -12,7 +12,6 @@ type MemberRenderProps = {
 
 export default function MemberRender({ department }: MemberRenderProps) {
   if (!department) return null
-
   const getLocalizedText = (field: any): string => {
     if (field && typeof field === 'object') {
       return field.en || field.hi || Object.values(field)[0] || ''
@@ -43,22 +42,16 @@ export default function MemberRender({ department }: MemberRenderProps) {
           <tbody>
             {tableRows.length > 0 ? (
               tableRows.map((member: any, index: number) => (
-                <tr 
-                  key={member.id || index} 
-                  className="border-b border-slate-200/60 transition-colors hover:bg-slate-50/80 bg-[white]"
-                >
+                <tr key={member.id || index} className="border-b border-slate-200/60 transition-colors hover:bg-slate-50/80 bg-white">
                   <td className="px-6 py-4 text-sm text-slate-700 font-medium">{index + 1}</td>
-                  <td className="px-6 py-4 text-sm font-medium text-slate-900">{getLocalizedText(member.name)}</td>
+                  <td className="px-6 py-4 text-sm font-semibold text-slate-900">{getLocalizedText(member.name)}</td>
                   <td className="px-6 py-4 text-sm text-slate-600">{getLocalizedText(member.designation)}</td>
                   <td className="px-6 py-4 text-sm text-slate-600">
                     {getLocalizedText(member.department) || getLocalizedText(department.wingName)}
                   </td>
                   <td className="px-6 py-4 text-sm">
                     {member.email && (
-                      <a 
-                        href={`mailto:${member.email}`} 
-                        className="text-[#1E14C8] hover:underline break-all font-medium inline-flex items-center gap-1"
-                      >
+                      <a href={`mailto:${member.email}`} className="text-[#1E14C8] hover:underline break-all font-medium inline-flex items-center gap-1">
                         {member.email}
                       </a>
                     )}
@@ -82,9 +75,9 @@ export default function MemberRender({ department }: MemberRenderProps) {
   const gridMembers = (department as any).memberInformation || (department as any).memberInfo || []
 
   return (
-    <div className="max-w-7xl w-full mx-auto mt-6 px-4 md:px-0">
+    <div className="max-w-6xl w-full mx-auto mt-6 px-4 md:px-0">
       {gridMembers.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center items-stretch">
           {gridMembers.map((member: any) => {
             const profileImage = member.image
             const imageUrl = profileImage && typeof profileImage === 'object' ? profileImage.url : ''
@@ -92,27 +85,39 @@ export default function MemberRender({ department }: MemberRenderProps) {
             return (
               <div
                 key={member.id}
-                className="border border-slate-100/80 rounded-2xl flex flex-col items-center p-8 gap-5 w-full bg-[#F4F9F8] transition-all duration-300 shadow-sm hover:shadow-md"
+                className="border border-slate-200/70 rounded-xl flex flex-col items-center p-6 pb-8 gap-4 w-full bg-white transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <div className="relative w-[180px] h-[180px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden bg-slate-200 border-2 border-white shadow-sm">
+                <div className="relative w-[180px] h-[180px] rounded-full overflow-hidden bg-slate-100 border border-slate-200/60 shadow-inner">
                   {imageUrl ? (
-                    <Image src={imageUrl} alt={getLocalizedText(member.name) || 'Official'} fill className="object-cover" />
+                    <Image 
+                      src={imageUrl} 
+                      alt={getLocalizedText(member.name) || 'Official'} 
+                      fill 
+                      className="object-cover"
+                    />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold bg-slate-100 text-sm">
+                    <div className="w-full h-full flex items-center justify-center text-slate-400 font-bold bg-slate-50 text-xs">
                       No Image
                     </div>
                   )}
                 </div>
 
-                <div className="w-full text-center flex flex-col gap-1 mt-2">
-                  <div className="font-bold text-xl text-slate-900 tracking-tight">{getLocalizedText(member.name)}</div>
-                  <div className="text-base text-slate-500 font-medium">{getLocalizedText(member.designation)}</div>
+                <div className="w-full text-center flex flex-col items-center gap-1.5 mt-2">
+                  <div className="font-bold text-lg text-slate-900 tracking-tight leading-snug">
+                    {getLocalizedText(member.name)}
+                  </div>
+                  <div className="text-sm text-slate-500 font-medium tracking-wide">
+                    {getLocalizedText(member.designation)}
+                  </div>
                   
                   {member.email && (
-                    <div className="flex items-center justify-center mt-3 pt-3 border-t border-slate-200/50 w-full">
-                      <a href={`mailto:${member.email}`} className="inline-flex items-center text-[#2C5E52] hover:text-emerald-700 hover:underline text-sm font-medium gap-1.5">
-                        <Mail className="w-4 h-4 text-[#386C5F]/80" />
-                        <span className="truncate max-w-[220px]">{member.email}</span>
+                    <div className="w-full mt-2 flex justify-center">
+                      <a 
+                        href={`mailto:${member.email}`} 
+                        className="inline-flex items-center text-xs text-[#2C5E52] hover:text-[#1E14C8] hover:underline font-normal gap-1.5 transition-colors tracking-wide"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <span className="truncate max-w-[210px]">{member.email}</span>
                       </a>
                     </div>
                   )}
