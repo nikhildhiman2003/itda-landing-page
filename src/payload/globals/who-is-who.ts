@@ -4,7 +4,7 @@ import { METADATA_FIELD } from './../utils'
 export const WhoIsWho: GlobalConfig = {
   slug: 'whos-who',
   admin: {
-    description: 'whos-who',
+    description: 'whos-who configuration layout panel',
   },
   access: {
     read: () => true,
@@ -14,53 +14,57 @@ export const WhoIsWho: GlobalConfig = {
     {
       type: 'array',
       name: 'departments',
-      label: 'Department Wings / Categories',
+      label: 'Department  / Categories',
       required: true,
       fields: [
         {
           type: 'text',
-          name: 'wingName',
-          label: 'Wing / Department Name',
+          name: 'wingName', 
+          label: 'Department Name',
           required: true,
-          localized: true, 
+        },
+        {
+          type: 'select',
+          name: 'memberInformationStructure',
+          label: 'Member Information Structure',
+          required: true,
+          defaultValue: 'directMembers',
+          options: [
+            { label: 'Direct Members', value: 'directMembers' },
+            { label: 'Member Table', value: 'memberTable' },
+          ],
         },
         {
           type: 'array',
-          name: 'officials',
-          label: 'Officials Under Wing',
-          required: true,
+          name: 'memberTableInformation',
+          label: 'Member Table Information',
+          admin: {
+            condition: (_, siblingData) => siblingData?.memberInformationStructure === 'memberTable',
+          },
           fields: [
-            {
-              type: 'text',
-              name: 'name',
-              label: 'Official Full Name',
-              required: true,
-            },
-            {
-              type: 'text',
-              name: 'designationKey',
-              label: 'Designation Translation Key',
-              required: true,
-              admin: {
-                description: 'i18n hook text trigger key (e.g., director, jointDirector)',
-              },
-            },
-            {
-              type: 'text',
-              name: 'email',
-              label: 'Official Email ID',
-              required: true,
-            },
-            {
-              type: 'upload',
-              name: 'image',
-              label: 'Official Profile Photo',
-              relationTo: 'media',
-              required: false,
-            },
+            { type: 'text', name: 'name', label: 'Name', required: true },
+            { type: 'text', name: 'designation', label: 'Designation', required: true },
+            { type: 'text', name: 'department', label: 'Department', required: true },
+            { type: 'text', name: 'email', label: 'Email', required: true },
+          ],
+        },
+        {
+          type: 'array',
+          name: 'memberInformation',
+          label: 'Member Information',
+          admin: {
+            condition: (_, siblingData) => siblingData?.memberInformationStructure === 'directMembers',
+          },
+          fields: [
+            { type: 'upload', name: 'image', label: 'Image', relationTo: 'media', required: true },
+            { type: 'text', name: 'name', label: 'Name', required: true },
+            { type: 'text', name: 'designation', label: 'Designation', required: true },
+            { type: 'text', name: 'email', label: 'Email', required: true },
           ],
         },
       ],
     },
   ],
 }
+
+export default WhoIsWho
