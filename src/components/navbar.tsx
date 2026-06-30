@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { ArrowRight, Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import i18n from '@/i18n'
 
 export default function Navbar() {
   const { t } = useTranslation() 
+  const pathname = usePathname()
   const [fontSize, setFontSize] = useState<'small' | 'normal' | 'large'>('normal')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isHindi = i18n.language === 'hi'
@@ -38,6 +40,13 @@ export default function Navbar() {
     i18n.changeLanguage(nextLang)
   }
 
+  const navLinks = [
+    { label: t('navbar.home'), href: '/' },
+    { label: t('navbar.services'), href: '/services' },
+    { label: t('navbar.whosWho'), href: '/whos-who' },
+    { label: t('navbar.career'), href: '/career' },
+  ]
+
   return (
     <>
       <header className="w-full fixed top-0 left-0 z-50 bg-[#F8F9FA] border-b border-slate-200">
@@ -47,7 +56,7 @@ export default function Navbar() {
               <a
                 href="#main-content"
                 onClick={handleSkipToMain}
-                className="px-4 text-[14px] text-slate-700 hover:text-slate-900 transition-colors"
+                className="px-4  text-[14px] text-slate-700 hover:text-slate-900 transition-colors"
               >
                 Skip to main content
               </a>
@@ -133,53 +142,56 @@ export default function Navbar() {
         <div className="max-w-[1440px] mx-auto px-8 h-[104px] flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/">
-            <Image
-              src="/assets/uttrakhand-logo.webp"
-              alt="Government of Uttarakhand"
-              width={52}
-              height={52}
-              className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain"
-              priority
-            />
+              <Image
+                src="/assets/uttrakhand-logo.webp"
+                alt="Government of Uttarakhand"
+                width={52}
+                height={52}
+                className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain cursor-pointer transition-opacity hover:opacity-90"
+                priority
+              />
             </Link>
             <Link href="/">
-            <Image
-              src="/assets/itda-logo.png"
-              alt="ITDA Logo"
-              width={52}
-              height={52}
-              className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain"
-              priority
-            />
+              <Image
+                src="/assets/itda-logo.png"
+                alt="ITDA Logo"
+                width={52}
+                height={52}
+                className="w-[42px] h-[42px] sm:w-[52px] sm:h-[52px] object-contain cursor-pointer transition-opacity hover:opacity-90"
+                priority
+              />
             </Link>
-
             <div>
               <h1 className="text-[18px] sm:text-[24px] font-bold text-black leading-none">
                 {isHindi ? 'ITDA सेवा पोर्टल' : 'ITDA Service Portal'}
               </h1>
               <p className="mt-1 sm:mt-2 text-[12px] sm:text-[14px] text-black">
-                {isHindi ? 'उत्तराखंड सरकार' : 'Govt. of Uttarakhand'}
+                {isHindi ? 'उत्तराhealth सरकार' : 'Govt. of Uttarakhand'}
               </p>
             </div>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-16">
-            <Link href="/" className="relative text-[15px] font-bold text-black pb-2">
-              {t('navbar.home')}
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-black" />
-            </Link>
+          <nav className="hidden lg:flex items-center gap-14">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href
 
-            <Link href="/services" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
-              {t('navbar.services')}
-            </Link>
-
-            <Link href="/whos-who" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
-              {t('navbar.whosWho')}
-            </Link>
-
-            <Link href="/career" className="text-[15px] font-medium text-black transition-colors hover:text-[#1E14C8]">
-              {t('navbar.career')}
-            </Link>
+              return (
+                <Link 
+                  key={link.href} 
+                  href={link.href} 
+                  className={`relative text-[15px] pb-2 transition-all duration-150 ${
+                    isActive 
+                      ? 'font-bold text-[#1E14C8]' 
+                      : 'font-medium text-black hover:text-[#1E14C8]'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#1E14C8]" />
+                  )}
+                </Link>
+              )
+            })}
           </nav>
 
           <div className="flex items-center gap-4">
@@ -201,18 +213,21 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden w-full bg-[#F8F9FA] border-t border-slate-200 px-8 py-4 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
             <nav className="flex flex-col gap-4 font-medium text-[15px] text-black">
-              <Link href="/" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {t('navbar.home')}
-              </Link>
-              <Link href="/services" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {t('navbar.services')}
-              </Link>
-              <Link href="/whos-who" onClick={() => setIsMenuOpen(false)} className="pb-1 border-b border-slate-200">
-                {t('navbar.whosWho')}
-              </Link>
-              <Link href="/career" onClick={() => setIsMenuOpen(false)} className="pb-1">
-                {t('navbar.career')}
-              </Link>
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href
+                return (
+                  <Link 
+                    key={link.href} 
+                    href={link.href} 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={`pb-1 border-b border-slate-200 transition-colors ${
+                      isActive ? 'text-[#1E14C8] font-bold' : 'text-black'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
             </nav>
             <div className="pt-2 sm:hidden">
               <button className="flex items-center justify-center gap-3 h-[46px] w-full rounded-full bg-[#1E14C8] text-white font-semibold text-[15px]">
