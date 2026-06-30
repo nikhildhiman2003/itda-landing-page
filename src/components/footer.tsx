@@ -19,8 +19,8 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="w-full bg-[#0b1325] text-slate-400 pt-16 pb-8 font-sans select-none border-t border-slate-900">
-      <div className="max-w-[1370px] mx-auto px-6 md:px-8">
+    <footer className="w-full bg-[#0b1325] text-slate-400 pt-10 pb-8 font-sans select-none border-t border-slate-900">
+      <div className="max-w-[1370px] mx-auto px-8 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-slate-800/60">
           <div className="lg:col-span-5 flex flex-col items-start">
             <div className="flex items-center gap-3.5 mb-6">
@@ -100,7 +100,7 @@ export default function Footer() {
               Quick Links
             </span>
             <ul className="space-y-3.5">
-              {['Privacy Policy', 'Disclaimer','Help', 'Terms & Conditions'].map((item) => (
+              {['Privacy Policy', 'Disclaimer','Accessibility', 'Terms & Conditions'].map((item) => (
                 <li key={item}>
                   <Link 
                     href={`/${item.toLowerCase().replace(/[ &]/g, '-')}`} 
@@ -131,7 +131,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="w-full pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div className="w-full pt-1 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <p className="text-slate-500 text-[12.5px] font-bold leading-relaxed max-w-2xl">
             © 2026 Contents of this website is published and managed by Information Technology Development Agency (ITDA), Department of IT
           </p>
