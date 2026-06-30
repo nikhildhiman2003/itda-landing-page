@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { 
   MapPin, 
   Phone, 
@@ -10,6 +11,13 @@ import {
 } from 'lucide-react'
 
 export default function Footer() {
+  const pageLinks = [
+    { label: 'Home Page', href: '/' },
+    { label: 'Services', href: '/services' },
+    { label: "Who's Who", href: '/whos-who' },
+    { label: 'Career', href: '/career' },
+  ]
+
   return (
     <footer className="w-full bg-[#0b1325] text-slate-400 pt-16 pb-8 font-sans select-none border-t border-slate-900">
       <div className="max-w-[1370px] mx-auto px-6 md:px-8">
@@ -65,11 +73,23 @@ export default function Footer() {
               Pages
             </span>
             <ul className="space-y-3.5">
-              {['Home Page', 'Services', "Who's Who", 'Career'].map((item) => (
-                <li key={item}>
-                  <a href={`/${item.toLowerCase().replace(/[' ]/g, '')}`} className="text-[13.5px] font-bold text-slate-400 hover:text-white transition-colors">
-                    {item}
-                  </a>
+              {pageLinks.map((item) => (
+                <li key={item.href}>
+                  {item.href === '/' ? (
+                    <a 
+                      href="/" 
+                      className="text-[13.5px] font-bold text-slate-400 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link 
+                      href={item.href} 
+                      className="text-[13.5px] font-bold text-slate-400 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -80,11 +100,14 @@ export default function Footer() {
               Quick Links
             </span>
             <ul className="space-y-3.5">
-              {['Privacy Policy', 'Disclaimer', 'Accessibility', 'Sitemap', 'Help', 'Terms & Conditions'].map((item) => (
+              {['Privacy Policy', 'Disclaimer','Help', 'Terms & Conditions'].map((item) => (
                 <li key={item}>
-                  <a href={`/${item.toLowerCase().replace(/[ &]/g, '-')}`} className="text-[13.5px] font-bold text-slate-400 hover:text-white transition-colors">
+                  <Link 
+                    href={`/${item.toLowerCase().replace(/[ &]/g, '-')}`} 
+                    className="text-[13.5px] font-bold text-slate-400 hover:text-white transition-colors cursor-pointer"
+                  >
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -97,13 +120,13 @@ export default function Footer() {
             <p className="text-slate-400 text-[13.5px] font-medium leading-relaxed mb-4">
               For technical assistance & queries, reach out to the ITDA helpdesk.
             </p>
-            <a 
+            <Link 
               href="/support" 
               className="inline-flex items-center gap-1.5 font-bold text-emerald-500 hover:text-emerald-400 text-[14px] group transition-colors focus:outline-none mt-2"
             >
               Contact Support
               <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" strokeWidth={2.5} />
-            </a>
+            </Link>
           </div>
 
         </div>
@@ -122,7 +145,7 @@ export default function Footer() {
               { icon: "/assets/twitter.svg", href: 'https://twitter.com', alt: 'Twitter' },
             ].map((social, index) => (
               <a key={index} href={social.href} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors focus:outline-none">
-              <Image src={social.icon} alt={social.alt} width={20} height={20} className="w-5 h-5" />
+                <Image src={social.icon} alt={social.alt} width={20} height={20} className="w-5 h-5" />
               </a>
             ))}
           </div>
