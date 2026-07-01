@@ -14,12 +14,12 @@ export default function Hero() {
             Government of Uttarakhand
           </span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-tight">
             Unified Services Portal
           </h1>
 
           <p className="text-base md:text-lg max-w-xl font-normal leading-relaxed">
-            The ITDA Services Portal provides a centralized platform for government
+            The ITDA Services Portal, provides a centralized platform for government
             departments to access IT infrastructure and digital services.
           </p>
 
@@ -47,12 +47,12 @@ export default function Hero() {
                   <span className="block text-2xl md:text-3xl font-extrabold text-slate-900">
                     20+
                   </span>
-                  <span className="text-xs font-bold text-slate-500 mt-1 block">
+                  <span className="text-xs  text-slate-500 mt-1 block">
                     Digital Services
                   </span>
                 </div>
 
-                <div className="p-2.5 bg-white border border-slate-100 rounded-xl text-slate-700 shadow-sm">
+                <div className="p-3 bg-[#DAF2FA] border-slate-100 rounded-xl text-slate-700 ">
                   <LayoutGrid className="w-4 h-4 text-[#675585]" />
                 </div>
               </CardContent>
@@ -64,13 +64,13 @@ export default function Hero() {
                   <span className="block text-2xl md:text-3xl font-extrabold text-slate-900">
                     100+
                   </span>
-                  <span className="text-xs font-bold text-slate-500 mt-1 block">
+                  <span className="text-xs text-slate-500 mt-1 block">
                     Departments Served
                   </span>
                 </div>
 
-                <div className="p-2.5 bg-white border border-slate-100 rounded-xl text-slate-700 shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-[#C5FCEF]" />
+                <div className="p-3 bg-[#C5FCEF] border-slate-100 rounded-xl text-slate-700">
+                  <CheckCircle2 className="w-4 h-4  text-[#00C9A5]" />
                 </div>
               </CardContent>
             </Card>
@@ -85,9 +85,7 @@ export default function Hero() {
     priority
     sizes="(max-width: 1024px) 100vw, 50vw"
     className="object-contain object-center lg:object-bottom"
-    style={{
-      objectPosition: "center bottom",
-    }}
+    
   />
     </div>
     </div>
