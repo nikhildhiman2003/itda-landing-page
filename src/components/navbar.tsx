@@ -125,7 +125,7 @@ export default function Navbar() {
 
               <div className="h-5 w-px bg-slate-300" />
 
-              <button title="Accessibility Options" className="flex items-center justify-center w-8 h-8">
+              <button title="Accessibility Options" className="flex items-center  justify-center w-8 h-8">
                 <img src="/assets/wheelchair.png" alt="Accessibility" className="w-5 h-5 object-contain" />
               </button>
             </div>
@@ -159,20 +159,19 @@ export default function Navbar() {
                 {isHindi ? 'ITDA सेवा पोर्टल' : 'ITDA Service Portal'}
               </h1>
               <p className="mt-1 sm:mt-2 text-[12px] sm:text-[14px] text-black">
-                {isHindi ? 'उत्तराhealth सरकार' : 'Govt. of Uttarakhand'}
+                {isHindi ? 'उत्तराखण्ड सरकार' : 'Govt. of Uttarakhand'}
               </p>
             </div>
           </div>
-
-          <nav className="hidden lg:flex items-center gap-14">
+          <div className="flex items-center justify-between gap-x-20">
+          <nav className="hidden gap-20 md:flex">
             {navLinks.map((link) => {
               const isActive = pathname === link.href
-
               return (
                 <Link 
                   key={link.href} 
                   href={link.href} 
-                  className={`relative text-[15px] pb-2 transition-all duration-150 ${
+                  className={`relative text-[15px] pb-2  transition-all duration-150 ${
                     isActive 
                       ? 'font-bold text-[#1E14C8]' 
                       : 'font-medium text-black hover:text-[#1E14C8]'
@@ -187,8 +186,8 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <button className="hidden sm:flex items-center justify-center gap-3 h-[50px] rounded-full px-5 bg-[#1E14C8] hover:bg-[#170fa5] text-white font-semibold text-[16px] transition-all group">
+          <div className="flex items-center gap-4 mb-2">
+            <button className="hidden sm:flex items-center justify-center gap-3 h-[50px] rounded-full px-5  bg-[#1E14C8] hover:bg-[#170fa5] text-white font-semibold text-[16px] transition-all group">
               {t('navbar.login')}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={2.5} />
             </button>
@@ -202,7 +201,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
+       </div>
         {isMenuOpen && (
           <div className="lg:hidden w-full bg-[#F8F9FA] border-t border-slate-200 px-8 py-4 flex flex-col gap-4 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
             <nav className="flex flex-col gap-4 font-medium text-[15px] text-black">
