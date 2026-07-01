@@ -62,13 +62,6 @@ export default function Navbar() {
               </a>
 
               <div className="h-11 w-px bg-slate-200" />
-
-              <Link
-                href="/sitemap"
-                className="px-4 text-[14px] text-black hover:text-slate-900 transition-colors"
-              >
-                Sitemap
-              </Link>
             </div>
 
             <div className="flex items-center gap-4">
