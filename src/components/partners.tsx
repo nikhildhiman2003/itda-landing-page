@@ -52,7 +52,7 @@ export default function Partners() {
       <Marquee speed={70} pauseOnHover>
         <div className="flex items-center gap-8 px-2 ">
           {GOVERNMENT_PORTALS.map((portal) => (
-            <Link key={portal.imageSrc} href={portal.url} target="_blank" className="rounded-3xl bg-blue-100/10 p-4">
+            <Link key={portal.imageSrc} href={portal.url} target="_blank" className="p-4">
               <Image
                 src={portal.imageSrc}
                 alt={portal.imageAlt}
